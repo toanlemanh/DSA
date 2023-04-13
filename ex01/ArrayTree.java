@@ -105,7 +105,9 @@ public class ArrayTree {
         return labels[node];
     }
     public void setNodeLabel (String label, int node){
-         labels [node] = label;
+       if (label == null || node < -1 || node >= realSize)
+           throw new NotPossibleException("Invalid node");
+        labels [node] = label;
     }
     public int nearestRightSibling (int node){
 
