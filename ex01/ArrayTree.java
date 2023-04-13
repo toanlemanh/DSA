@@ -59,13 +59,54 @@ public class ArrayTree {
     public int getParent (int node){
         return parentArray [node];
     }
-    public int leftMostChild (int parent){
-//        C1:
-        for (int i = 0; i < realSize; i++){
-            if ( parentArray[i] == parent )
-                return i;
+//     public int leftMostChild (int parent){
+// //        C1:
+//         for (int i = 0; i < realSize; i++){
+//             if ( parentArray[i] == parent )
+//                 return i;
+//              }
+//         return -1;
+//     }
+     public int leftMostChild (int parent) {
+        if (parent == -1)
+            return 0;
+        if (parent <= realSize && parent > -1) {
+                int index = findExact(parentArray, parent);
+                return index;
+            }
+        throw new NotPossibleException("Invalid parent");
+    }
+
+
+    //    Whether another solution with effective time-complexity ???
+//
+//     C2: Binary search
+//
+     public static int binarySearch (int [] array, int left, int right, int target){
+        
+         int mid = (left + right) / 2;
+         while ( left <= right ) {
+
+             if (array[mid] == target) return mid;
+             else if (array[mid] < target) {
+                return binarySearch(array, mid + 1, right, target);
+             } else {
+                return binarySearch(array, left, mid - 1, target);
              }
-        return -1;
+         }
+         return -1; //not found
+    }
+    public static int findExact (int [] parentArray, int parent){
+       
+            int i = binarySearch(parentArray, 0, realSize - 1, parent);
+            if (i == -1)
+                return -1;// not found
+            else
+                while (parentArray[i] == parentArray[parent]) {
+                    i--;
+                }
+            return i;
+      
     }
 //   //  C2: Binary search  public int binarySearch (int [] array, int left, int right, int target){
 //         int mid = (left + right) / 2;
