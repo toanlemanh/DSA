@@ -101,11 +101,12 @@ public class ArrayTree {
             int i = binarySearch(parentArray, 0, realSize - 1, parent);
             if (i == -1)
                 return -1;// not found
-            else
-                while (parentArray[i] == parentArray[parent]) {
+            else {
+                while (parentArray[i] == parent) {
                     i--;
                 }
-            return i;
+                return i+1;
+            }
       
     }
 //   //  C2: Binary search  public int binarySearch (int [] array, int left, int right, int target){
