@@ -70,7 +70,7 @@ public class ArrayTree {
      public int leftMostChild (int parent) {
         if (parent == -1)
             return 0;
-        if (parent <= realSize && parent > -1) {
+        if (parent < realSize && parent > -1) {
                 int index = findExact(parentArray, parent);
                 return index;
             }
